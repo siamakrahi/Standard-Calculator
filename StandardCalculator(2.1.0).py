@@ -116,6 +116,7 @@ e1.grid(row=0, column=0, columnspan=4, sticky="nsew", ipady=10)
 
 button_font = tkFont.Font(family='Segoe UI', size=12)
 button_bold_font = tkFont.Font(family='Segoe UI', size=12, weight='bold')
+button_large_font = tkFont.Font(family='Segoe UI', size=20)
 button_height = window_height // 10
 button_width = window_width // 4
 
@@ -131,8 +132,8 @@ def on_enter(e):
 def on_leave(e):
     e.widget['background'] = 'lightgray'
 
-def create_button(text, row, column, command, bg='lightgray', fg='black'):
-    btn = Button(calc, text=text, font=button_font, bd=4, command=command, bg=bg, fg=fg)
+def create_button(text, row, column, command, font=button_font, bg='lightgray', fg='black'):
+    btn = Button(calc, text=text, font=font, bd=4, command=command, bg=bg, fg=fg)
     btn.grid(row=row, column=column, sticky="nsew")
     btn.bind("<Enter>", on_enter)
     btn.bind("<Leave>", on_leave)
@@ -141,32 +142,32 @@ def create_button(text, row, column, command, bg='lightgray', fg='black'):
 create_button("+/-", 7, 0, lambda: btn('+/-'))
 create_button("0", 7, 1, lambda: btn('0'))
 create_button(".", 7, 2, lambda: btn('.'))
-create_button("=", 7, 3, eq)
+create_button("=", 7, 3, eq ,  font=button_large_font)
 
 create_button("1", 6, 0, lambda: btn('1'))
 create_button("2", 6, 1, lambda: btn('2'))
 create_button("3", 6, 2, lambda: btn('3'))
-create_button("+", 6, 3, lambda: btn('+'))
+create_button("+", 6, 3, lambda: btn('+'),  font=button_large_font) 
 
 create_button("4", 5, 0, lambda: btn('4'))
 create_button("5", 5, 1, lambda: btn('5'))
 create_button("6", 5, 2, lambda: btn('6'))
-create_button("-", 5, 3, lambda: btn('-'))
+create_button("-", 5, 3, lambda: btn('-'),  font=button_large_font)
 
 create_button("7", 4, 0, lambda: btn('7'))
 create_button("8", 4, 1, lambda: btn('8'))
 create_button("9", 4, 2, lambda: btn('9'))
-create_button("*", 4, 3, lambda: btn('*'))
+create_button("*", 4, 3, lambda: btn('*'),  font=button_large_font)
 
 create_button("¹/ₓ", 3, 0, reciprocal)
 create_button("x²", 3, 1, square)
 create_button("√x", 3, 2, square_root)
-create_button("÷", 3, 3, lambda: btn('/'))
+create_button("÷", 3, 3, lambda: btn('/'),  font=button_large_font)
 
 create_button("%", 2, 0, percentage)
 create_button("CE", 2, 1, clear_entry)
 create_button("C", 2, 2, c)
-create_button("←", 2, 3, backspace)
+create_button("←", 2, 3, backspace, font=button_bold_font)
 
 for i in range(8):
     calc.grid_rowconfigure(i, weight=1)
